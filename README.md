@@ -1,6 +1,6 @@
 ## Hi there 
 
-![Header](./assets/background_.png)
+![Header](./background_.png)
 
 <!--
 **Hardek00/Hardek00** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
