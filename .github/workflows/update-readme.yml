@@ -1,23 +1,41 @@
-name: Update GitHub Stats
+name: Update GitHub Stats # The name of your workflow, displayed in the Actions tab
 
 on:
   schedule:
-    - cron: "0 * * * *"  # updates every hour (adjust as needed)
+    # This cron job runs at the top of every hour (e.g., 00:00, 01:00, etc.)
+    # Adjust as needed: e.g., "0 0 * * *" to run once a day at midnight UTC
+    - cron: "0 * * * *"
   workflow_dispatch:
+    # Allows you to manually trigger the workflow from the GitHub Actions tab
 
 jobs:
   update-readme:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Specifies the operating system for the job
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout repo # Step 1: Clones your repository into the runner environment
+        uses: actions/checkout@v4 # Use a stable version of the checkout action
 
-      - name: Generate GitHub Stats
-        uses: anuraghazra/github-readme-stats@master
+      - name: Generate GitHub Stats # Step 2: Uses the github-readme-stats action
+        # IMPORTANT: Replace @vX with the latest stable version (e.g., @v6 or @v5)
+        # Check https://github.com/anuraghazra/github-readme-stats for the recommended tag.
+        uses: anuraghazra/github-readme-stats@v6 # <--- CORRECTED LINE HERE
         with:
-          username: Hardek00
-          include_all_commits: true
+          username: Hardek00 # Your GitHub username
+          # Set to true to include private contributions in the stats
           count_private: true
+          # Set to true to include all commits (including merge commits)
+          include_all_commits: true
+          # You can add more options here like:
+          # hide_rank: "true" # To hide the rank card
+          # show_icons: "true" # To show icons next to labels
+          # theme: "dark" # To set a specific theme (e.g., radical, merko, etc.)
+          # custom_title: "My GitHub Stats" # Custom title for the card
+          # hide_title: "true" # To hide the title
+          # locale: "en" # Language for the card
         env:
+          # This secret holds your Personal Access Token (PAT)
+          # It must have the 'repo' scope to access private repository data.
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          # This should be your GitHub personal access token (PAT)
+          # DO NOT directly put your token here. Use GitHub Secrets.
