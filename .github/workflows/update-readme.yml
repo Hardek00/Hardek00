@@ -2,7 +2,7 @@ name: Update GitHub Stats
 
 on:
   schedule:
-    - cron: '0 * * * *' # every hour
+    - cron: '0 * * * *'  # every hour
   workflow_dispatch:
 
 jobs:
@@ -19,15 +19,13 @@ jobs:
       - name: Run update script
         run: ./update-readme.sh
 
-      - name: Commit changes
+      - name: Commit and push changes
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
           git add README.md
           git commit -m "Update README with latest GitHub stats" || echo "No changes to commit"
-          git push
-        env:
-            GH_PAT: ${{ secrets.GH_PAT }}
-
-
+          git push origin HEAD
