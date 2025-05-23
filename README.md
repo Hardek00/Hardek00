@@ -2,7 +2,7 @@
 
 ![Header](./bkr.png)
 
-![Mateusz's GitHub stats](https://github-readme-stats.vercel.app/api?username=Hardek00&show_icons=true&count_private=true&include_all_commits=true&theme=dark)
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=Hardek00&show_icons=true&count_private=true&include_all_commits=true&hide_title=true&token=${GH_TOKEN})
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Hardek00&layout=compact&theme=tokyonight)
 
 <!--
