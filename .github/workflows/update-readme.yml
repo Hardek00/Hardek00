@@ -1,9 +1,8 @@
-# .github/workflows/update-readme.yml
 name: Update GitHub Stats
 
 on:
   schedule:
-    - cron: '0 * * * *' # varje timme
+    - cron: '0 * * * *' # every hour
   workflow_dispatch:
 
 jobs:
@@ -13,6 +12,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Make script executable
+        run: chmod +x update-readme.sh
 
       - name: Run update script
         run: ./update-readme.sh
@@ -26,4 +28,5 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
